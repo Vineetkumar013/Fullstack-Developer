@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #SignUp{
+            display: grid;
+            margin: 20px auto;
+            justify-content: center;
+            width: 30%;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 30px;
+            border-radius: 1ch;
+            background-color: rgb(151, 219, 196);
+        }
+        input{
+            border-radius: 1ch;
+            border: 1px solid antiquewhite;
+        }
+        #loginup{
+            display: grid;
+            margin: 20px auto;
+            justify-content: center;
+            width: 30%;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 30px;
+            border-radius: 1ch;
+            background-color:rgb(74, 227, 227);
+        }
+    </style>
+</head>
+<body>
+   <img src="https://www.masaischool.com/img/navbar/logo.svg" alt="">
+    <form id="SignUp">
+        <h1>Sign Up</h1>
+    
+        <input type="text" placeholder="name" id="first"><br>
+        <input type="mail" placeholder="email" id="second"><br>
+        <input type="password" placeholder="password" id="third"><br>
+        <input type="submit" id="SigUp" onclick="store()">
+
+    </form>
+    <form id="loginup">
+        <h1>loginUp</h1>
+      
+        <input type="text" placeholder="userename" id="userfirst"><br>
+        <input type="mail" placeholder="useremail" id="usersecond"><br>
+        <input type="password" placeholder="userpassword" id="userthird"><br>
+        <input type="submit" id="logUp" onclick="check()">
+
+    </form>
+      
+    </div>
+</body>
+</html>
+<script>
+   let user = document.querySelector("#first")
+   let mail =document.querySelector("#second")
+   let pass = document.querySelector("#third");
+
+ 
+function store(){
+    localStorage.setItem("name",user.value)
+    localStorage.setItem("email",mail.value)
+    localStorage.setItem("Password",pass.value)
+    
+    alert("SignUp successfully")
+}
+function check(){
+    let storename = localStorage.getItem("name")
+    let storemail = localStorage.getItem("email")
+    let storepass =localStorage.getItem("Password")
+
+ let userName =  document.querySelector("#userfirst")
+  let userEmail = document.querySelector("#usersecond")
+   let userPass =document.querySelector("#userthird")
+
+   if(userName.value!==storename && userEmail!==storemail && userPass!==storepass){
+    alert("login credential wrong")
+   }else{
+   
+    alert("login successfully")
+   }
+
+
+}
+
+</script>

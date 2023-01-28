@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="first">
+
+    </div>
+</body>
+</html>
+<script>
+    let bag =[]
+    let url = "https://jsonplaceholder.typicode.com/todos"
+    fetch(url)
+    .then((res)=> res.json())
+    .then((data)=>{
+        console.log(data)
+        bag =data
+        displayData(data)
+
+    }).catch((err)=>{
+        console.log(err)
+    })
+
+
+function  displayData(data){
+    data.forEach(element => {
+        let div =document.createElement('div')
+        let p1 =document.createElement('p')
+        p1.innerText = element.id
+        let p2 =document.createElement("p")
+        p2.innerText =element.userId
+        let p3 =document.createElement("p")
+        p3.innerText = element.completed
+       let p4 = document.createElement('p') 
+       p4.innerText = element.title
+        if(element.completed==false){
+
+
+       div.append(p1,p2,p3,p4) 
+        }
+       let list = document.querySelector("#first").append(div)
+        localStorage.setItem("todo",JSON.stringify(list))
+           
+    });
+}
+    
+</script>
+
+    

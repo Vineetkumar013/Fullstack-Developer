@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container > div {
+        border: 1px solid red;
+        margin: 30px, 30px;
+      }
+      #container {
+        margin: 40px 10px;
+      }
+      .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 500px;
+        width: 600px;
+      }
+      .mapouter {
+        position: relative;
+        text-align: right;
+        height: 500px;
+        width: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" placeholder="enter city" id="city" />
+    <button onclick="getwheather()" type="submit">submit</button>
+    <div id="container"></div>
+    <div class="mapouter">
+      <div class="gmap_canvas">
+        <iframe
+          width="600"
+          height="500"
+          id="gmap_canvas"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+        ></iframe
+        ><a href="https://2piratebay.org">pirate bay</a><br /><a
+          href="https://www.embedgooglemap.net"
+          >how to put google maps on website</a
+        >
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  let apikey = "343a44cc80bab4907d1ea04314862260";
+
+  let map = document.getElementById("gmap_canvas");
+
+  function getwheather() {
+    let city = document.getElementById("city").value;
+
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        displayTable(data);
+      });
+  }
+
+  function displayTable(data) {
+    document.querySelector("#container").innerHTML="";
+    let div = document.createElement("div");
+    let cityname = document.createElement("h2");
+    cityname.innerText = `City Name :  ${data.name}`;
+    let mintemp = document.createElement("p");
+    mintemp.innerText = "Minimum temprature : " + data.main.temp_min;
+    let maxtemp = document.createElement("p");
+    maxtemp.innerText = "Maximum temprature : " + data.main.temp_max;
+    let wind = document.createElement("p");
+    wind.innerText = "Wind Speed : " + data.wind.speed;
+    let cloud = document.createElement("p");
+    cloud.innerText = "Clouds : " + data.clouds.all;
+    let pressure = document.createElement("p");
+    pressure.innerText = "pressur : " + data.main.pressure;
+    let humidity = document.createElement("p");
+    humidity.innerText = "humidity : " + data.main.humidity;
+
+    div.append(cityname, mintemp, maxtemp, wind, cloud, pressure, humidity);
+    document.querySelector("#container").append(div);
+
+    map.src = `https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+  }
+</script>

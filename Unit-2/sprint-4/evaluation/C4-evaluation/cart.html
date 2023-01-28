@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page</title>
+    <style>
+      /* Write all necessery css here  */
+      img{
+        width: 100%;
+      }
+      #cart-container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 10px;
+        margin: auto;
+      }
+      .nav{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      #total{
+        text-align: center;
+      }
+      #cart-container>div{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <h1>Masai E-Commerce</h1>
+      <a style="color: red;"href="./index.html">Home</a>
+      <a style="color: red;"href="./cart.html">Cart</a>
+    </div>
+    <h1 id="total">Your Total cart Price is:- <span id="cart-total">0</span></h1>
+    <div id="cart-container">
+      <!-- Here Append All the cart Products  -->
+    </div>
+  </body>
+  <script>
+    // Write all necessery JS here 
+    let item=JSON.parse(localStorage.getItem("cart_add"));
+    let price=item.reduce((acc,el)=>{
+      return acc+Number(el.price);
+    },0);
+    document.querySelector("#cart-total").innerText=price;
+    function display(bag){
+            document.querySelector("#cart-container").innerHTML="";
+            bag.forEach(element => {
+                let div=document.createElement("div");
+                let img=document.createElement("img");
+                img.setAttribute("src",element.img);
+                let brand=document.createElement("h2");
+                brand.innerText=element.brand;
+                let price=document.createElement("h3");
+                price.innerText=element.price;
+                let desc=document.createElement("p");
+                desc.innerText=element.details;
+                let cat=document.createElement("p");
+                cat.innerText=element.category;
+                div.append(img,brand,price,desc,cat);
+                document.querySelector("#cart-container").append(div);
+            });
+        }
+        display(item);
+  </script>
+</html>

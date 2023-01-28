@@ -1,0 +1,104 @@
+
+const express = require("express")
+
+const app = express()
+ 
+const {connection, UserModel} = require("./db")
+
+
+app.use(express.json())
+app.get("/", (req, res) => {
+    res.send({"msg" : "Welcome"})
+})
+
+app.get("/users", async (req, res) => {
+    const params = req.query
+    try{
+        const users = await UserModel.find(params)
+        res.send(users)
+    }
+    catch(err){
+        console.log(err)
+        res.send({"err" : "something went wrong"})
+    }
+  
+})
+
+app.post("/createuser", async (req, res) => {
+    try{
+        const payload = req.body
+        const user = new UserModel(payload)
+        await user.save()
+        res.send({"msg" : "Created successfully"})
+    }
+    catch(err){
+        console.log(err)
+        res.send({"err" : "something went wrong"})
+    }
+})
+
+app.patch("/edituser/:userID", async (req, res) => {
+    const userID = req.params.userID
+    const payload = req.body;
+    try{
+        const query = await UserModel.findByIdAndUpdate({_id :userID},payload)
+        console.log(query)
+        res.send("Updated")
+    }
+    catch(err){
+        console.log(err)
+        res.send({"err" : "something went wrong, try again later"})
+    }
+})
+
+app.delete("/deleteuser/:userID", async (req, res) => {
+    const userID = req.params.userID
+    try{
+        await UserModel.findByIdAndDelete({_id : userID})
+        res.send(`User ${userID} deleted successfully`)
+    }
+    catch(err){
+        console.log(err)
+        res.send({"err" : "something went wrong, try again later"})
+    }
+})
+
+
+
+
+
+
+
+app.listen(7500, async () => {
+    try{
+     await connection;
+     console.log("Connected to DB Successfully")
+    }
+    catch(err){
+        console.log("Connection to DB failed")
+        console.log(err)
+    }
+    console.log(`Listening on port 7500`)
+})
+
+
+//mongoose queries - https://mongoosejs.com/docs/queries.html
+
+//1. the response should always be in JSON
+//2. status codes - https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+ const mongoose = require("mongoose")
+
+const connection = mongoose.connect("mongodb://127.0.0.1:27017/masaidb")
+
+const userSchema = mongoose.Schema({
+    name : String,
+    age : Number,
+    legal : Boolean,
+    city : String,
+    language : String,
+    profession : String,
+})
+const UserModel = mongoose.model("user", userSchema)
+
+module.exports = {connection, UserModel}
+

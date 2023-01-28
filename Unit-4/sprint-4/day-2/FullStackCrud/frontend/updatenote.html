@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Note update Page</h1>
+ <form id="formnote"> 
+    <input type="id" placeholder="noteID" id="noteID">
+    <input type="text" placeholder="title" id="title">
+    <input type="submit" value="Submit" id="btn">
+   </form> 
+</body>
+</html>
+<script>
+
+        const create_btn = document.querySelector("#formnote");
+        create_btn.addEventListener("submit",CreateNoteFunction);
+
+// Make API request to server for updateing the new user.
+async function CreateNoteFunction(event) {
+  try {
+    event.preventDefault();
+    let noteID = document.querySelector("#noteID").value
+    let title = document.querySelector("#title").value
+    let obj ={title}
+    let update_request = await fetch(`http://localhost:3500/note/update/${noteID}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+       "Authorization": `${localStorage.getItem("psctoken")}`,
+        
+      },body:JSON.stringify(obj)
+   
+    })  
+        if(update_request.ok){
+            console.log("Data updated successfully")
+            alert("Note updated successfully"); 
+        }else{
+            alert("Note not found.");
+        }
+    } catch (error) {
+		console.log(error);
+        alert("Error in updateing. Please try again later.");
+    }
+}
+</script>

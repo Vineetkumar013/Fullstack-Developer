@@ -1,0 +1,91 @@
+*{
+  margin: 0px;
+  padding: 0px;
+   }
+ body{
+  background-color: rgb(244, 244, 244);
+}
+.headings{
+  text-align: center;
+  padding-bottom: 30px;
+}
+.container{
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+  }
+   .services{
+   display: grid;
+   grid-template-columns: repeat(2,1fr);
+   gap: 20px;
+
+  }
+  .services>div{
+    display: flex;
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1ch;
+   
+  }
+ 
+
+  .discover{
+    display: flex;
+   width: 100%;
+    text-align: center;
+   gap: 20px;
+  
+
+  }
+  .discover>div{
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    justify-content: center;
+    padding: 1ch;
+    
+  }
+ 
+  .doctors{
+    display:flex;
+    margin: 50px auto;
+    justify-content: space-between;
+
+  }
+  .doctors>div:nth-child(2){
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+
+  }
+    
+     
+  @media all and (min-width:500px) and (max-width:900px){
+    .services{
+      grid-template-columns: repeat(1,1fr);
+    }
+    .discover{
+    flex-direction: column;
+      }
+      .doctors{
+        flex-direction: column;
+      }
+
+  }
+  @media all and (min-width:200px) and (max-width:500px){
+    .services{
+      grid-template-columns: repeat(1,1fr);
+    }
+      .services>div{
+    flex-direction: column;
+      }
+      .discover{
+    flex-direction: column;
+      }
+      .doctors{
+        flex-direction: column;
+      }
+      .doctors>div:nth-child(2){
+        grid-template-columns:repeat(2,1fr);
+       
+      }
+  }

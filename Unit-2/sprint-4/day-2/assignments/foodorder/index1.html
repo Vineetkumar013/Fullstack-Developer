@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #res{
+          display: grid;
+          grid-template-columns: repeat(4,1fr);
+        gap: 20px;
+        }
+        img{
+        width:50%;
+        }
+        div>div{
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 15px;
+          text-align: center;
+          border-radius: 1ch;
+          justify-content: space-around;
+        }
+        h2{
+           text-align: right;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <h1>Added item's</h1>
+    <div id="res"></div>
+
+</body>
+</html>
+<script>
+    let food =JSON.parse(localStorage.getItem("added"))
+    
+   
+    
+ 
+    function displayTable(food){
+        
+   for(let i=0; i<food.length; i++){
+  let div1 = document.createElement("div")
+  let img =document.createElement("img")
+  img.setAttribute("src" ,food[i].image_url)
+  let p1 = document.createElement("p")
+  p1.innerText = food[i].name;
+  let p2 = document.createElement("p")
+  p2.innerText = food[i].price
+  let h2 = document.createElement("h2")
+  h2.innerText = "id Number:"+food[i].Id;
+
+
+  div1.append(h2,img,p1,p2);
+  document.querySelector("div").append(div1)
+
+  
+}
+    }
+
+let p =document.createElement("p")
+
+
+// setTimeout(()=>{
+//     p.innerText = "Loading...";
+// },3000)
+setTimeout(()=>{
+    displayTable(food)
+},3000)
+    
+</script>

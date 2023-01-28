@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .container{
+            display: grid;
+           
+            gap: 10px;
+            grid-template-areas: "nav nav nav nav"
+                                  "rd yg blu gry";
+                                  
+         }
+   
+
+        .container > div:nth-child(1) {
+        background-color: yellow;
+        grid-area: nav;
+        }
+        .container > div:nth-child(2) {
+        background-color: red;
+        grid-area: rd;
+        }
+        .container > div:nth-child(3) {
+        background-color: yellowgreen;
+        grid-area: yg;
+        }
+        .container>div:nth-child(4) {
+        background-color: blue;
+        grid-area: blu;
+        }
+        .container>div:nth-child(5) {
+        background-color: gray;
+        grid-area: gry;
+        }
+        .container>div:nth-child(1) ~ div{
+            height: 100px;
+        }
+
+        @media all and (min-width:600px) and (max-width:900px){
+           
+            .container{
+                grid-template-areas: 
+                                  "nav nav"
+                                  "rd blu"
+                                   "yg gry";
+
+            }
+
+        }
+        @media all and (min-width:100px) and (max-width:600px){
+           
+           .container{
+               grid-template-areas: 
+                                 "nav"
+                                 "rd"
+                                 "blu"
+                                 "yg"
+                                 "gry";
+
+           }
+
+       }
+            
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>Navigation</div>
+        <div>Box1</div>
+        <div>Box2</div>
+        <div>Box3</div>
+        <div>Box4</div>
+    </div>
+
+</body>
+</html>

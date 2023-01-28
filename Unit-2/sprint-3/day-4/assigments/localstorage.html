@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h1>show your result here</h1>
+        <p>username</p>
+        <input type="text" placeholder="type your name" id="username">
+        <button id="l1">store to ls</button>
+        <button id="lg1">get from ls</button>
+        <br>
+        <!-- <h1>here mobile</h1> -->
+        <p>mobile number</p>
+        <input type="text" placeholder="type your name" id="mobile">
+        <button id="l2">store to ls</button>
+        <button id="lg2">get from ls</button>
+    <br>
+        <p>my hobbies</p>
+        <input type="text" placeholder="type your hobbies" id="myHobby">
+        <button id="l3">store to ls</button>
+        <button id="lg3">get from ls</button>
+
+        <br>
+        <p>students names</p>
+        <input type="text" placeholder="type student_name" id="students">
+        <button id="l4">store to ls</button>
+        <button id="lg4">get from ls</button>
+</body>
+</html>
+<script>
+ document.querySelector("body")
+var LS =JSON.parse(localStorage.getItem("username"))||[];     
+ l1.addEventListener("click",myfun)
+function myfun(event){
+    event.preventDefault();
+    let obj = {
+        name:username.value
+    }
+   LS.push(obj);
+   localStorage.setItem("username",JSON.stringify(LS));
+}
+lg1.addEventListener("click",myfu)
+function myfu(event){
+    event.preventDefault();
+ 
+   document.querySelector("h1").innerText = username.value
+}
+
+
+
+// kdjfhnvkldnvkldkdfjg
+document.querySelector("body")
+var LS =JSON.parse(localStorage.getItem("mobile"))||[];     
+ l2.addEventListener("click",myfunm)
+function myfunm(event){
+    event.preventDefault();
+    let obj = {
+        phone:mobile.value
+    }
+   LS.push(obj);
+   localStorage.setItem("mobile",JSON.stringify(LS));
+}
+lg2.addEventListener("click",myfum)
+function myfum(event){
+    event.preventDefault();
+ 
+   document.querySelector("h1").innerText = mobile.value
+}
+// sajfdvhljkasgdbflkjasgbvkjhaskljvhsafv
+
+document.querySelector("body")
+var LS =JSON.parse(localStorage.getItem("myHobby"))||[];     
+ l3.addEventListener("click",myfunt)
+function myfunt(event){
+    event.preventDefault();
+    let obj = {
+        myhobby:myHobby.value
+    }
+   LS.push(obj);
+   localStorage.setItem("myHobby",JSON.stringify(LS));
+   
+}
+lg3.addEventListener("click",myfuct)
+function myfuct(event){
+    event.preventDefault();
+ 
+   document.querySelector("h1").innerText = myHobby.value
+}
+
+
+
+
+
+
+// lskdhfklshflhsifjsf
+document.querySelector("body")
+var LS =JSON.parse(localStorage.getItem("students"))||[];     
+ l4.addEventListener("click",myfunti)
+function myfunti(event){
+    event.preventDefault();
+    let obj = {
+        student_name:students.value
+    }
+   LS.push(obj);
+   localStorage.setItem("students",JSON.stringify(LS));
+   
+}
+lg4.addEventListener("click",myfucti)
+function myfucti(event){
+    event.preventDefault();
+ 
+   document.querySelector("h1").innerText = students.value
+}
+</script>

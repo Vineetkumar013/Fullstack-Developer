@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+        }
+        #container>div> img{
+            width: 100%;
+        }
+        #container>div{
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 30px 4px;
+        }
+       input{
+        padding:10px 20px ;
+        width: 300px;
+        margin: 10px;
+       }
+       a{
+        display: block;
+        margin: 20px;
+        
+       }
+    </style>
+  </head>
+  <body>
+    <a href="./cart.html">ITEM'S Cart</a>
+    <input oninput="search()" type="text" placeholder="Search product" >
+    <select onChange="handleSort()">
+      <option value="LTH">LTH</option>
+      <option value="HTL">HTL</option>
+    </select>
+    <div id="container">
+
+    </div>
+   
+  </body>
+</html>
+<script>
+  let url = "https://fakestoreapi.com/products";
+  
+  let bag = [];
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      bag = data;
+      console.log(data);
+      displayTable(data);
+    });
+    // .catch((err) => alert(err));
+//   function displayErr(err) {
+    // document.querySelector("h2").innerText = err;
+//   }
+
+function handleSort(){
+  let selected =document.querySelector("select").value;
+  if(selected=="HTL"){
+    bag.sort((a,b)=> b.price - a.price);
+  }
+  if(selected=="LTH"){
+    bag.sort((a,b)=>a.price - b.price);
+  }
+  console.log(bag)
+  displayTable(bag)
+ }
+
+function search(){
+    let q =document.querySelector("input").value
+    console.log(q)
+    let newData = bag.filter(function(elem){
+        return elem.title.toLowerCase().includes(q.toLowerCase())
+    });
+    // console.log(newData);
+    displayTable(newData)
+}
+
+ 
+
+  function displayTable(data) {
+    document.querySelector("#container").innerHTML=""
+    data.forEach(function(element){
+      let div = document.createElement("div");
+      let img = document.createElement("img");
+      img.setAttribute("src",element.image)
+      let title = document.createElement("h2");
+    title.innerText =element.title;
+      let desc = document.createElement("p")
+      desc.innerText =element.description
+      let cost = document.createElement("p");
+      cost.innerText= element.price
+      let rating = document.createElement("p");
+         rating.innerText =element.rating.rate
+         let btn =document.createElement("button")
+         btn.innerText = "Add to Cart"
+         btn.addEventListener("click",function(){
+          addData("added",element)
+         });
+      div.append(img, title, desc, cost,rating,btn);
+      document.querySelector("#container").append(div);
+    });
+  }
+  function addData(key,value){
+    let newLSData = JSON.parse(localStorage.getItem(key))||[]
+    newLSData.push(value)
+    localStorage.setItem("added",JSON.stringify(newLSData))
+  }
+
+  
+</script>

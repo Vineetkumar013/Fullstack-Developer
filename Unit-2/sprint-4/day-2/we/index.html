@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //take count as a var and assign a vcalue
+    //create a new promise in a such way that if count>0 ,resolve it
+    //else reject it
+
+    let count = -7;
+    let promise = new Promise(function(resolve,reject){
+        // resolve(count)
+        if(count>0){
+            resolve("my promise fillfill")
+        }else{
+            reject("my promise not fullfill")
+        }
+    });
+    // console.log(promise)
+    promise.then(function(fromrsolve){
+        console.log(fromrsolve);
+    })
+    promise.catch(function(fromrReject){
+        console.log(fromrReject);
+    })
+
+//     var x = 15;
+//     let numpromise =new Promise(function(resolve,reject){
+// if(x%2==0){
+//     resolve("my promise has been resolved")
+// }else{
+//     reject("my promise is rejected")
+// }
+//     })
+//     // console.log(numpromise)
+//     // numpromise.then(function(value){
+//     //     console.log(value)
+//     // })
+// .then((value) => console.log(value))
+// .catch((rej)=>console.log(rej))
+//     // numpromise.catch(function(rej){
+//     //     console.log(rej)
+//     // })
+</script>

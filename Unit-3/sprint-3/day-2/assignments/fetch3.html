@@ -1,0 +1,62 @@
+<body>
+    <div id="first">
+
+    </div>
+</body>
+<style>
+    #first{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+        
+        
+    }
+    #first>div{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+text-align: center;
+padding: 10px;
+    }
+</style>
+</html>
+<script>
+    
+    let url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products`
+    fetch(url)
+    .then((res)=> res.json())
+    .then((data)=>{
+       
+        displayData(data.data)
+        console.log(data)
+    }).catch((err)=>{
+        console.log(err)
+    })
+
+
+function  displayData(data){
+    data.forEach(element => {
+        let div =document.createElement('div')
+        let img =document.createElement("img")
+        img.setAttribute("src",element.image)
+        let h3 =document.createElement('h3')
+        h3.innerText = element.title
+        let p2 =document.createElement("p")
+        p2.innerText =  "price: " +element.price
+        let p3 =document.createElement("p")
+        p3.innerText ="category: " +element.category
+       let p4 = document.createElement('p') 
+       p4.innerText = element.brand
+       
+
+
+       div.append(img,h3,p2,p3,p4) 
+        
+       document.querySelector("#first").append(div)
+        // localStorage.setItem("todo",JSON.stringify(list))
+           
+    });
+}
+
+
+    
+</script>

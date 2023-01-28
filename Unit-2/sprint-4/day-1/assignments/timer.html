@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: cyan;
+        height: 100vh;
+      }
+      .digit {
+        font-size: 60px;
+      }
+      .txt {
+        font-size: 30px;
+      }
+      #btn-container > button {
+        font-size: 30px;
+        padding: 10px;
+        margin: 10px;
+        background-color: ghostwhite;
+        color: chocolate;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="timer">
+        <span class="digit" id="min">5</span>
+        <span class="txt">Min</span>
+        <span class="digit" id="sec">00</span>
+        <span class="txt">Sec</span>
+        <span class="digit" id="count">00</span>
+      </div>
+      <div id="btn-container">
+        <button class="btn" id="start" onclick="start()">Start</button>
+        <button class="btn" id="stop" onclick="stop()">Stop</button>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  let min = 5;
+  let sec = 60;
+  let count = 0;
+  let timer = false;
+
+  function start() {
+    timer = true;
+    settime();
+  }
+  function stop() {
+    timer = false;
+  }
+
+  function settime() {
+    if (timer == true) {
+      count = count - 1;
+      if (count == -100) {
+        sec = sec - 1;
+        count = 0;
+      }
+      if (sec == 0) {
+        min = min - 1;
+        sec = 60;
+      }
+      document.getElementById("min").innerText = min;
+      document.getElementById("sec").innerText = sec;
+      document.getElementById("count").innerText = count;
+
+      setTimeout("settime()", 10);
+    }
+  }
+</script>

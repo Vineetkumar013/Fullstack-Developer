@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: cadetblue;
+        height: 100vh;
+      }
+      #container{
+        color:chartreuse
+      }
+      .digit{
+        font-size: 80px;
+        font-weight: bold;
+      }
+      .btn{
+        font-size: 20px;
+        padding:0px 10px;
+        background-color: chocolate;
+        margin: 20px;
+        
+      }
+      .btn:hover{
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+        <div id="time">
+      <span class="digit" id="hr">00</span> 
+      <span class="txt">Hr</span>
+      <span class="digit" id="min">00</span>
+      <span class="txt">Min</span>
+      <span class="digit" id="sec">00</span>
+      <span class="txt">Sec</span>
+      <span class="digit" id="count">00</span>
+    </div>
+    <div id="btn-conatiner">
+    <button class="btn" id="start" onclick="start()">start</button>
+    <button class="btn" id="stop" onclick="stop()">stop</button>
+    <button class="btn" id="reset" onclick="reset()">Reset</button>
+</div>
+    <div>
+  </body>
+</html>
+<script>
+    var hr = 0;
+    var min = 0;
+    var sec = 0;
+    var count =0;
+var timer =false;
+function start(){
+    timer = true;
+    stopwatch();
+
+}
+function stop(){
+    timer = false;
+
+}
+function reset(){
+    timer = false;
+    hr=0;
+    min=0;
+    sec=0;
+    count=0;
+    document.getElementById("hr").innerText ="00"
+        document.getElementById("min").innerText ="00"
+        document.getElementById("sec").innerText ="00"
+    document.getElementById("count").innerText ="00"
+
+}
+
+
+function stopwatch(){
+    if(timer == true){
+        count =count+1;
+        if(count == 100){
+            sec =sec+1
+            count=0;
+          
+        }
+        if(sec==60){
+            min =min+1
+            sec=0;
+        }
+        if(min==60){
+            hr =hr+1
+            min =0;
+            sec=0;
+        }
+                // string
+        var hrstr = hr
+        var minstr = min;
+        var secstr = sec;
+        var countstr =count;
+        if(hr<10){
+            hrstr = "0"+hrstr
+        }    
+        if(min<10){
+            minstr="0"+minstr;
+        }    
+        if(sec<10){
+            secstr="0"+secstr;
+        }    
+        if(count<10){
+            countstr="0"+countstr;
+        }     
+
+
+        document.getElementById("hr").innerText =hrstr
+        document.getElementById("min").innerText =minstr
+        document.getElementById("sec").innerText =secstr
+    document.getElementById("count").innerText =countstr
+   setTimeout("stopwatch()",10)
+    }
+}
+</script>

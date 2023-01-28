@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+          #container{
+          
+            height: 300px;
+            width: 250px;
+            margin: auto;
+      margin-top: 30px;
+            display: grid;
+            justify-content: space-evenly;
+            gap: 20px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            /* align-items: center; */
+          }
+
+          #container>.box{
+            height: 30px;
+            width: 80%;
+            
+            grid-template-columns: repeat(1,1fr);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            margin: auto;
+            padding-top: 20px;
+            
+          }
+
+          #container>.key{
+            display: grid;
+            box-flex-group: red;
+            grid-template-columns: repeat(4,1fr);
+            height: 60%;
+            width: 70%;
+            gap: 10px;
+            glyph-orientation-vertical: 30px;
+           
+            
+          }
+          .box:hover{
+            background-color: brown;
+          }
+          #container>.key>div:nth-child(n){
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 10px 20px;
+            border-radius: 1ch;
+
+    
+          }
+
+          .key>.black{
+            background-color: rgb(11, 11, 20);
+            color: white;
+          }
+          .key>.red{
+            background-color: red;
+            color: wheat;
+          }
+          .key>div:hover{
+            background-color: brown;
+          }
+          
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box"></div>
+        <div class="key">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div class="black">+</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div class="black">-</div>
+          <div>7</div>
+          <div>8</div>
+          <div>9</div>
+          <div class="black">*</div>
+          <div class="red">C</div>
+          <div>0</div>
+          <div class="black">=</div>
+          <div class="black">/</div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+  let x =document.querySelectorAll(".key>div");
+  let bag ="";
+  for(let i=0; i<x.length; i++){
+    x[i].addEventListener("click",myCal)
+  }
+  function myCal(event){
+    let targetNum = event.target.innerText
+    if(targetNum=="C"){
+    bag = "";
+    document.querySelector(".box").innerText = bag;
+    }else if(targetNum=="="){
+      let res =eval(bag)
+      console.log(res)
+    }
+    else{
+      bag = bag+targetNum;
+    document.querySelector(".box").innerText = bag;
+   
+  }
+  }
+</script>

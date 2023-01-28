@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Note Delete Page</h1>
+ <form id="formnote"> 
+    <input type="id" placeholder="noteID" id="title">
+    <input type="submit" value="Submit" id="btn">
+   </form> 
+</body>
+</html>
+<script>
+let token = localStorage.getItem("psctoken")
+        const create_btn = document.querySelector("#formnote");
+        create_btn.addEventListener("submit",CreateNoteFunction);
+
+// Make API request to server for deleteing the new user.
+async function CreateNoteFunction(event) {
+  if(token){
+  try {
+    event.preventDefault();
+    let noteID = document.querySelector("#title").value
+    
+    let delete_request = await fetch(`https://erin-duck-coat.cyclic.app/post/delete/${noteID}`,{
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+       "Authorization": token,
+        
+      }
+   
+    })
+        
+        if(delete_request.ok){
+            console.log("Data Deleted succe")
+            alert("Note Deleted successfully"); 
+        }else{
+            alert("Note not found.");
+        }
+    } catch (error) {
+		console.log(error);
+        alert("Error in Deleteing. Please try again later.");
+    }
+}else{
+  alert("Please Login first")
+}
+}
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2></h2>
+</body>
+</html>
+<script>
+    let n = 20
+    // let final ;
+let promise = new Promise(function(resolve){
+   resolve(n)
+    
+});
+let promise1=new Promise(function(q){
+n+=20
+ q(n)
+ 
+})
+let promise2 =new Promise(function(final){
+
+    n+=120
+    final(n)
+})
+
+
+    promise2.then((check) => {
+     if (n % 2 == 0) {
+     console.log("even")
+     document.querySelector("h2").innerText="even"
+    } else {
+      console.log("odd")
+      document.querySelector("h2").innerText="odd"
+    } 
+
+  }) 
+
+</script>
+
+

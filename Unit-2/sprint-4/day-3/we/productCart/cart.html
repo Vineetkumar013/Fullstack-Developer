@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+           #contain{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+        }
+        #contain>div> img{
+            width: 100%;
+        }
+        #contain>div{
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 30px 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="contain">
+
+    </div>
+</body>
+</html>
+<script>
+    let cart =JSON.parse(localStorage.getItem("added"))
+    displayCart(cart)
+
+
+    function displayCart(cart) {
+    // document.querySelector("#contain").innerHTML=""
+    cart.forEach(function(element){
+      let div = document.createElement("div");
+      let img = document.createElement("img");
+      img.setAttribute("src",element.image)
+      let title = document.createElement("h2");
+    title.innerText =element.title;
+      let desc = document.createElement("p")
+      desc.innerText =element.description
+      let cost = document.createElement("p");
+      cost.innerText= element.price
+      let rating = document.createElement("p");
+         rating.innerText =element.rating.rate
+        
+      div.append(img, title, desc, cost,rating);
+      document.querySelector("#contain").append(div);
+    });
+  }
+</script>

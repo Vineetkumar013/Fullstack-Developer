@@ -1,0 +1,38 @@
+1. POST request using http
+    let str = ""
+    req.on("data", (packet) => {
+        str += packet;
+    })
+    req.on("end", () => {
+        console.log(str)
+    })
+
+
+2. Streams -
+  
+    const movieStream = fs.createReadStream("./dummy.txt", {encoding:"utf-8"})
+    movieStream.pipe(res)
+
+
+3. Express -
+    using http module of node
+     1. code was very messy
+     2. we had to handle different methods + routes;
+         if(req.url === "/adddata" && req.method === "POST")
+     3. getting the data from the clietn/handling post request;
+        req.data -> 
+     4. res.write, res.end
+
+    built over the top of the "http module" of node itself;
+    //nodemon - MERN stack
+
+   
+4. Data from backend/api response
+      -> obj -> stringfied it
+      ->JSON format/Stringified format
+       -> JSON.parse(data) - object
+
+
+       Networking -> client -> server -> String/array of bytes
+
+       

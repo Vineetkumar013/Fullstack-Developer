@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      #form{
+         display: grid;
+            grid-template-columns: repeat(1,1fr);
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+            padding: 40px 50px;
+          width: 10%;
+        margin: 10px auto;
+        gap: 5px;
+     
+      }
+      #form>label{
+        font-size: 20px;
+        font-weight: 50;
+      }
+      #form>input{
+      width: 90%;
+        padding-top:10px ;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <h1>Rigistration form</h1>
+    <a href="./dashboard.html">Dashboard</a>
+    <br>
+
+    <br>
+    <a href="./vaccinated.html">Vaccinated</a>
+    <form id="form">
+      <label for="">ID</label>
+      <input type="number" placeholder="Unique ID" id="numID"/>
+      <label for="">Name</label>
+      <input type="text" placeholder="name" id="name"/>
+      <label for="">Age</label>
+      <input type="text" placeholder="Age" id="age" />
+      <label for="">Designation</label>
+      <select id="desi">
+        <option>Employee</option>
+        <option>Student</option>
+      </select>
+      <label for="">Priority</label>
+      <select id="priority">
+        <option>p0</option>
+        <option>p1</option>
+        <option>p2</option>
+        <option>p3</option>
+      </select>
+      <label for="">Vaccine</label>
+      <select id="vaccine">
+        <option>Covishield</option>
+        <option>Covaxin</option>
+        <option>Sputnik</option>
+      </select>
+      <input type="submit" value="Register Button" />
+    </form>
+
+  </body>
+</html>
+<script>
+    let newData = document.querySelector("#form")
+    newData.addEventListener("submit",function(event){
+        event.preventDefault();
+ let mat = JSON.parse(localStorage.getItem("formdata"))||[]
+        let obj = {
+            id:newData.numID.value,
+            name:newData.name.value,
+            age:newData.age.value,
+            desi:newData.desi.value,
+            priority:newData.priority.value,
+            vaccine:newData.vaccine.value
+        }
+        mat.push(obj);
+     if(obj.numID==""||obj.name==""||obj.age==""||obj.desi==""||obj.priority==""){
+        alert("Please fill the form");
+     }else{
+        localStorage.setItem("formdata",JSON.stringify(mat))
+     }   
+
+    });
+
+
+</script>

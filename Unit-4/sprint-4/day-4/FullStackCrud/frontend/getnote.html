@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background-color: #8caacf;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0468aa;
+  color: white;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+    <h1>All Notes </h1>
+ <form id="formnote"> 
+    
+    <input type="submit" value="Submit" id="btn">
+   </form> 
+
+   
+   <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>title</th>
+            <th>note</th>
+            <th>category</th>
+        </tr>
+    </thead>
+    <tbody id="table">
+        
+    </tbody>
+   </table>
+</body>
+</html>
+<script>
+   let token = localStorage.getItem("psctoken")
+        const create_btn = document.querySelector("#formnote");
+        create_btn.addEventListener("submit",CreateNoteFunction);
+
+// Make API request to server for deleteing the new user.
+async function CreateNoteFunction(event) {
+  if(token){
+  try {
+    event.preventDefault();
+   
+    
+    let delete_request = await fetch(`https://black-lobster-sari.cyclic.app/note/get`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+       "Authorization": token
+        
+      }
+   
+    }).then(res => res.json())
+    .then(res =>{
+      console.log(res)
+       DisplayData(res)})
+    .catch(err =>console.log(err))
+        
+    } catch (error) {
+		console.log(error);
+        alert("Error in Getting Data. Please try again later.");
+    }
+}else{
+  alert("Please Login First")
+}
+}
+
+function DisplayData(data){
+    document.querySelector("tbody").innerHTML = ""
+    for(let ele=0; ele<data.length; ele++){
+          let div =  document.createElement("tr")
+        let id = document.createElement("td")
+ id.innerText = data[ele]._id
+ let title = document.createElement("td")
+ title.innerText = data[ele].title
+ let note = document.createElement("td")
+note.innerText =data[ele].note
+let category= document.createElement("td")
+ category.innerText = data[ele].category
+ div.append(id,title,note,category)
+ document.querySelector("#table").append(div)
+    }
+    // data.forEach(ele => {
+    
+
+    // })
+ 
+}
+</script>

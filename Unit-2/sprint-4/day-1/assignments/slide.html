@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Page</title>
+    <link rel="stylesheet" href="" class="img">
+    <style>
+        #img1{
+            width: 100%;
+            height: 270px;
+        }
+        #img2{
+            width: 50%;
+        }
+       
+    </style>
+</head>
+<body>
+    <img name="slide" height ="500px" width="100%">  
+    <button onclick="change()">click</button>
+   
+    <!-- <img src="" alt=""> -->
+</body>
+</html>
+<script>
+    
+
+    
+    var i =0;
+     var images =[]
+     var timer =2000;
+
+     images[0] = 'img1.jpeg';
+     images[1] = 'img2.jpeg';
+     images[2] = 'img3.jpeg';
+     images[3] = 'img4.jpeg';
+    //  img
+    //  images[2] = img3
+     function changeimg(){
+        document.slide.src=images[i]
+        if(i<images.length-1){
+            i++;
+        }else{
+            i=0;
+        }
+       
+        setTimeout("changeimg()",timer)
+     }
+     function change(){
+        changeimg()
+     }
+        
+     
+    //  window.onload = changeimg
+
+    
+   
+</script>

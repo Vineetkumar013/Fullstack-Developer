@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #res{
+          display: grid;
+          grid-template-columns: repeat(4,1fr);
+         /* height: 300px; */
+        gap: 20px;
+        /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+        }
+        img{
+        width:50%;
+        }
+        div>div{
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 15px;
+          text-align: center;
+          border-radius: 1ch;
+          justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+  <a href="./index1.html">Menu Cart</a>
+  <h1>FOOD ITEM'S</h1>
+  <div id="res"></div>
+      
+</body>
+</html>
+<script>
+
+  // let promise =new
+    let fooddata =[
+        {
+        
+      image_url:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXwgDjjeDBhjYECMNvwg2Zoq1JeSexFTAsfQ&usqp=CAU",
+      name: "MATAR PANEER",
+      price: 300,
+      Id:1111,
+    
+    }
+    
+    ,{
+        image_url:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyA41Prt5yts-VcLL_-u_YD3VwcvXFi8UNA&usqp=CAU",
+      name: "CURRY",
+      price: 300,
+      Id:2222,
+    
+    }
+    ,{
+        image_url:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ_IaPQOhcZ2nhf3yVrUi-c2j7l7DYI_JvBNdLo5J6qnQhobVL7vu9IXIBECS4DKAaXok&usqp=CAU",
+      name: "CHHOLA",
+      price: 300,
+      Id:3333,
+    
+    }
+    ,{
+        image_url:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz3307YqoOG80-_PdEXFI0X1LvLY24G6WE3A&usqp=CAU",
+      name: "TANDOORI ROTI",
+      price: 300,
+      Id:4444,
+    
+    }
+    ,{
+        image_url:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ_IaPQOhcZ2nhf3yVrUi-c2j7l7DYI_JvBNdLo5J6qnQhobVL7vu9IXIBECS4DKAaXok&usqp=CAU",
+      name: "CHHOLA PANEER",
+      price: 300,
+      Id:55555,
+    
+    },
+];
+
+   for(let i=0; i<fooddata.length; i++){
+  let div1 = document.createElement("div")
+  let img =document.createElement("img")
+  img.setAttribute("src" ,fooddata[i].image_url)
+  let p1 = document.createElement("p")
+  p1.innerText = fooddata[i].name;
+  let p2 = document.createElement("p")
+  p2.innerText = fooddata[i].price
+  let h2 = document.createElement("h2")
+  h2.innerText =fooddata[i].Id;
+  let btn =document.createElement("button")
+  btn.innerText = "Add to cart"
+  btn.addEventListener("click",function(){
+    addData("added",fooddata[i]);
+
+  });
+
+  div1.append(img,p1,p2,h2,btn);
+  document.querySelector("div").append(div1)
+
+  
+}
+  function addData(key,value){
+    let newLSData = JSON.parse(localStorage.getItem(key))||[];
+    newLSData.push(value)
+    localStorage.setItem("added",JSON.stringify(newLSData))
+  }
+
+</script>

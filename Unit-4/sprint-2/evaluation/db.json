@@ -1,0 +1,23 @@
+{
+  "students": [
+    {
+      "roll_no": 2,
+      "name": "manohar",
+      "location": "indore",
+      "course": "Javascript"
+    },
+    {
+      "roll_no": 3,
+      "name": "ram",
+      "location": "indore",
+      "course": "Javascript"
+    },
+    {
+      "roll_no": 4,
+      "name": "ram",
+      "location": "indore",
+      "course": "Javascript"
+    }
+  ],
+  "teachers": [{ "emp_id": 1, "name": "atul", "sub": "coding", "exp": 1 }]
+}

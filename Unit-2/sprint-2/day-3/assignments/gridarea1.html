@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0px;
+        }
+       
+      .grid {
+        display: grid;
+        grid-template-columns: 600px 600px;
+        /* grid-template-rows: repeat(3, 200px); */
+        gap: 10px;
+        height: 300px;
+        justify-content: center;
+        padding-top: 20px;
+        
+      }
+      
+       .grid2 {
+        display: grid;
+        grid-template-columns: 300px 900px;
+        /* grid-template-rows: repeat(3, 200px); */
+        gap:  10px;
+        height: 300px;
+        justify-content: center;
+        padding-top: 20px;
+      } 
+      .grid3 {
+        display: grid;
+        grid-template-columns: 1200px 0px;
+        /* grid-template-rows: repeat(3, 200px); */
+        gap: 10px;
+        height: 300px;
+        justify-content: center;
+        padding-top: 20px;
+      } 
+      .grid > div {
+        font-size: 130px;
+        color: antiquewhite; 
+        padding: 60px 50px;
+        border-radius: 1ch;
+       }
+       .grid2 > div {
+        font-size: 130px;
+        color: antiquewhite; 
+        border-radius: 1ch;
+        padding: 60px 0px;
+       }
+       .grid3 > div {
+        font-size: 130px;
+        color: antiquewhite; 
+        border-radius: 1ch;
+        padding-top:40px;
+       }
+      .grid > div:nth-child(1) {
+        background-color:  rgb(85, 56, 56);
+      
+      }
+      .grid > div:nth-child(2) {
+        background-color: rgb(85, 56, 56);
+        
+      } 
+      .grid2> div:nth-child(1) {
+        background-color:  rgb(85, 56, 56);
+      }
+      .grid2> div:nth-child(2) {
+        background-color:  rgb(85, 56, 56);
+       
+      } 
+      .grid3> div:nth-child(1) {
+        background-color:  rgb(85, 56, 56); 
+      
+        
+      }
+      .grid3> div:nth-child(2) {
+        background-color: rgb(85, 56, 56);
+        
+      }  
+   
+      
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <div>A</div>
+      <div>B</div>
+    </div>
+       <div class="grid2">
+        <div>C</div>
+      <div>D</div>
+      </div> 
+      <div class="grid3">
+        <div>E</div>
+      <div>F</div>
+      </div> -->
+      
+     
+   
+  </body>
+</html>

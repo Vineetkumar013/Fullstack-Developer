@@ -1,0 +1,50 @@
+<body>
+    <div id="first">
+
+    </div>
+</body>
+</html>
+<script>
+    
+    let url = `https://jsonplaceholder.typicode.com/posts`
+    fetch(url)
+    .then((res)=> res.json())
+    .then((data)=>{
+       
+        let short = data.sort(function(a,b){
+            return b.id-a.id;
+      })
+        displayData(data)
+        console.log(short)
+    }).catch((err)=>{
+        console.log(err)
+    })
+
+
+function  displayData(data){
+    data.forEach(element => {
+        let div =document.createElement('div')
+        let p1 =document.createElement('p')
+        p1.innerText = element.id
+        let p2 =document.createElement("p")
+        p2.innerText =element.userId
+        let p3 =document.createElement("p")
+        p3.innerText = element.body
+       let p4 = document.createElement('p') 
+       p4.innerText = element.title
+       
+
+
+       div.append(p1,p2,p3,p4) 
+        
+       document.querySelector("#first").append(div)
+        // localStorage.setItem("todo",JSON.stringify(list))
+           
+    });
+}
+
+
+    
+</script>
+
+    

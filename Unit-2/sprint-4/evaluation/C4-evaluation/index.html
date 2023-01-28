@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      .nav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      img {
+        width: 100%;
+      }
+      #product-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: auto;
+      }
+      #cart-container > div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      button {
+        background-color: aqua;
+        color: rgb(183, 216, 245);
+        border: 0ch;
+        border-radius: 10%;
+        position: relative;
+      }
+      /* Write all necessery css here  */
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <h1>Masai E-Commerce</h1>
+      <a style="color: red" href="./index.html">Home</a>
+      <a style="color: red" href="./cart.html">Cart</a>
+    </div>
+    <!-- Use this Select Tag for Filtering the Products  -->
+    <select id="filter">
+      <option value="">Filter By Category</option>
+      <option value="Laptop">Laptop</option>
+      <option value="Mobile">Mobile</option>
+      <option value="Speakers">Speakers</option>
+    </select>
+    <div id="product-container">
+      <!-- Here Append All the Products  -->
+    </div>
+  </body>
+  <script>
+    let bag = [];
+    async function product() {
+      try {
+        let res = await fetch(
+          "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products"
+        );
+        let data = await res.json();
+        display(data.data);
+        bag = data.data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    document.querySelector("#filter").addEventListener("change", function () {
+      let filterdata = bag.filter(function (element) {
+        return element.category === filter.value;
+      });
+      display(filterdata);
+    });
+    function display(bag) {
+      document.querySelector("#product-container").innerHTML = "";
+      bag.forEach((element) => {
+        let div = document.createElement("div");
+        let imges = document.createElement("img");
+        imges.setAttribute("src", element.img);
+        let h2 = document.createElement("h2");
+        h2.innerText = element.brand;
+        let price = document.createElement("h3");
+        price.innerText = element.price;
+        let desc = document.createElement("p");
+        desc.innerText = element.details;
+        let cat = document.createElement("p");
+        cat.innerText = element.category;
+        let btn = document.createElement("button");
+        btn.innerText = "Add to cart";
+        btn.addEventListener("click", function () {
+          alert("item added to cart");
+          add_data("cart_add", element);
+        });
+        div.append(imges, h2, price, desc, cat, btn);
+        document.querySelector("#product-container").append(div);
+      });
+    }
+    function add_data(key, value) {
+      let newdata = JSON.parse(localStorage.getItem(key)) || [];
+      newdata.push(value);
+      localStorage.setItem(key, JSON.stringify(newdata));
+    }
+    product();
+  </script>
+</html>

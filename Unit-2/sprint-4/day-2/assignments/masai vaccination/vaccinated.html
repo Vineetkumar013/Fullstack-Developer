@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 60%;
+          margin: auto;
+          margin-top: 50px;
+          text-align: center;
+        }
+  
+        table td,
+        table th {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: center;
+        }
+  
+        table tr:nth-child(even) {
+          background-color: #8caacf;
+        }
+  
+        table tr:hover {
+          background-color: #ddd;
+        }
+  
+        table th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #0468aa;
+          color: white;
+          text-align: center;
+        }
+      </style>
+</head>
+<body>
+
+    <select onchange="handleSort()">
+        <option value="Covishield">Covishield</option>
+        <option value="Sputnik">Sputnik</option>
+        <option value="Covaxin">Covaxin</option>
+    </select>
+    <table>
+        <thead id="th">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Vaccine</th>
+            <th>Vaccineted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <------tr---->
+        </tbody>
+      </table>
+</body>
+</html>
+<script>
+
+
+let fav = JSON.parse(localStorage.getItem("vaccinate"));
+  displayTable(fav);
+  function displayTable(fav) {
+    document.querySelector("tbody").innerHTML = "";
+    fav.forEach(function (elem, i) {
+      let row = document.createElement("tr");
+      let td1 = document.createElement("td");
+      td1.innerText = elem.id;
+
+      let td2 = document.createElement("td");
+      td2.innerText = elem.name;
+      let td3 = document.createElement("td");
+      td3.innerText = elem.age;
+      let td4 = document.createElement("td");
+      td4.innerText = elem.desi;
+      let td5 = document.createElement("td");
+      td5.innerText = elem.priority;
+      let td6 = document.createElement("td");
+      td6.innerText = elem.vaccine;
+      let td7=document.createElement("td")
+      td7.innerText="Vaccinated"
+      
+
+      row.append(td1, td2, td3, td4, td5, td6,td7);
+      document.querySelector("tbody").append(row);
+    });
+  }
+  
+  function handleSort(){
+     let selected =document.querySelector("select").value;
+     let filterData = fav.filter(function(elem){
+        return elem.priority = selected
+     });   
+     console.log(filterData)
+     displayTable(filterData)
+    }
+</script>

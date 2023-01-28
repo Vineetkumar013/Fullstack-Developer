@@ -1,0 +1,9 @@
+
+Method=GET URL=/TimeTaken=29 date=29/11/2022
+Method=GET URL=/favicon.icoTimeTaken=5 date=29/11/2022
+Method=GET URL=/dataTimeTaken=1 date=29/11/2022
+Method=GET URL=/TimeTaken=23 date=29/11/2022
+Method=GET URL=/dataTimeTaken=5 date=29/11/2022
+Method=GET URL=/TimeTaken=37 date=29/11/2022
+Method=GET URL=/TimeTaken=24 date=29/11/2022
+Method=GET URL=/TimeTaken=37 date=29/11/2022

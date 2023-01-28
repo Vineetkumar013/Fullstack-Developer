@@ -1,0 +1,29 @@
+{
+    "students": [
+        {
+            "id": 2,
+            "name": "manohar",
+            "sub": "hindi"
+        },
+        {
+            "id": 3,
+            "name": "chunnu",
+            "sub": "hindi"
+        },
+        {
+            "id": 4,
+            "name": "ayushi",
+            "sub": "english"
+        },
+        {
+            "id": 5,
+            "name": "atul",
+            "sub": "Maths"
+        },
+        {
+            "id": 5,
+            "name": "priya",
+            "sub": "english"
+        }
+    ]
+}

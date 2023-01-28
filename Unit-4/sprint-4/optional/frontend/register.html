@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="register.css" />
+  </head>
+  <body>
+    <!-- <form id="register">
+    <input type="text" placeholder="Enter Name" id="name">
+    <input type="text" placeholder="Enter Email" id="email">
+    <input type="text" placeholder="pass" id="pass">
+    <input type="number" placeholder="Enter Age" id="age">
+    <input type="submit" value="Submit" id="btn">
+   </form> -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="card">
+            <h2 class="card-title text-center">Register User here!</h2>
+            <div class="card-body py-md-4">
+              <form id="register">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Name"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Password"
+                  />
+                </div>
+               
+                <div
+                  class="d-flex flex-row align-items-center justify-content-between"
+                >
+                  <a href="./login.html">Login</a>
+                  <button class="btn btn-primary">Create Account</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  const Register_btn = document.querySelector("#register");
+  Register_btn.addEventListener("submit", RegisterFunction);
+
+  // Make API request to server for registering the new user.
+  async function RegisterFunction(event) {
+    try {
+      event.preventDefault();
+      let all_input_tags = document.querySelectorAll("#register input");
+      let name = document.querySelector("#name").value;
+      let email = document.querySelector("#email").value;
+      let pass = document.querySelector("#password").value;
+      
+      let userObj = {
+        name,
+        email,
+        pass,
+     
+      };
+
+      let register_request = await fetch(
+        "https://black-lobster-sari.cyclic.app/user/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userObj),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          alert(res);
+          window.location.href = "./login.html";
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      alert("Something went wrong. Please try again later.");
+    }
+  }
+</script>

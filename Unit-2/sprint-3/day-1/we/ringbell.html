@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="tag">Please open the door</h1>
+    <button onclick="fun()">click</button>
+</body>
+</html>
+
+<!-- Add an event to button such that, whenever user clicks on button, a message saying that "Please open the door" should be shown in console -->
+<script>
+    function fun(){
+        let para = document.getElementById("tag").innerText;
+        console.log(para);
+
+    }
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data =[];
+        let max =5;
+        let cursize=data.length;
+        function push(){
+            let newVal =document.getElementById("new").value;
+         if(cursize>=max){
+            alert("overflow "+ newVal)
+         }else{
+            data[cursize]=newVal
+         cursize+=1;
+         document.querySelector("#new").value=""
+         console.log("element added")
+         }
+        
+        }
+        function pop(){
+            if(cursize>0){
+                cursize+=-1
+                data.length =cursize;
+                console.log("elem remove")
+            }else{
+                alert("underflow")
+            }
+        }   
+
+        function display(){
+            for(let i=0; i<=cursize-1; i++){
+                console.log(data[i])
+            }
+
+        }
+        
+
+    </script>
+
+    <h1>all value</h1>
+    <input type="text" placeholder="Enter stack value" id="new">
+    <button onclick="push()">Add</button>
+    <button onclick="pop()">Remove</button>
+    <button onclick="display()">display number</button>
+
+</body>
+</html>
